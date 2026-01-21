@@ -52,7 +52,7 @@ const Header = () => {
           {/* Logo */}
           <Link href="#top" onClick={(e) => scrollToSection(e, "#top")}>
             <div className="text-2xl text-white font-black">
-              <h1>sortino</h1>
+              <h1>Sortino</h1>
             </div>
           </Link>
 

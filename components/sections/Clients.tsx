@@ -66,7 +66,7 @@ const Clients = () => {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-[10px] md:text-xs tracking-[0.4em] font-bold text-gray-400 uppercase mb-3"
+            className="text-[30px]  tracking-[0.4em] font-bold text-gray-400 uppercase mb-3"
           >
             Trusted by Global Leaders
           </motion.p>

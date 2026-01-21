@@ -36,97 +36,117 @@ const Services = () => {
       id="MARKETING"
       className="relative bg-black text-white py-32 overflow-hidden"
     >
-      {/* Top Shape Divider (Slant from previous section) */}
-     
+      {/* Decorative Gradient Line at Top (Seamless blend from previous section) */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-      <div className=" mx-auto px-6 relative z-10 pt-20">
-        {/* Header - Massive and Impactful */}
-        {/* Header - Now Perfectly Centered */}
-        <div className="max-w-5xl mb-32 mx-auto text-center flex flex-col items-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-5xl md:text-8xl font-black tracking-tighter leading-none"
-          >
-            OUR <span className="text-[var(--color-primary)]">CORE</span> <br />
-            EXPERTISE.
-          </motion.h2>
-
-          {/* The accent line centered with margin-x auto */}
-          <div className="h-2 w-24 bg-[var(--color-primary)] mt-8 mx-auto"></div>
-        </div>
-
-        {/* Vertical Services Stack */}
-        <div className="flex flex-col gap-1">
-          {services.map((service, index) => (
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="flex flex-col lg:flex-row gap-20">
+          {/* LEFT COLUMN: Sticky Header 
+              This stays fixed on the screen while you scroll through services on the right.
+          */}
+          <div className="lg:w-1/2 lg:h-screen lg:sticky lg:top-0 lg:flex lg:flex-col lg:justify-center">
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="group relative border-t border-white/10 py-16 md:py-24 hover:bg-white/[0.02] transition-colors duration-500"
+              transition={{ duration: 0.8 }}
             >
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 md:gap-16">
-                {/* Number and Title */}
-                <div className="flex items-start gap-6 md:w-1/2">
-                  <span className="text-[var(--color-primary)] font-mono text-lg mt-2 font-bold">
-                    {service.tag}
+              <h2 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-none mb-6">
+                OUR <span className="text-[var(--color-primary)]">CORE</span>{" "}
+                <br />
+                EXPERTISE.
+              </h2>
+              <div className="h-2 w-24 bg-[var(--color-primary)] mb-8"></div>
+              <p className="text-gray-400 text-lg max-w-md hidden lg:block">
+                We combine data-driven strategies with creative excellence to
+                deliver measurable growth.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* RIGHT COLUMN: Scrolling Services List */}
+          <div className="lg:w-1/2 flex flex-col gap-24 lg:py-24">
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group"
+              >
+                {/* Number Tag */}
+                <div className="flex items-center gap-4 mb-6">
+                  <span className="text-[var(--color-primary)] font-mono text-xl font-bold">
+                    /{service.tag}
                   </span>
-                  <h3 className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight group-hover:text-[var(--color-primary)] transition-colors duration-300">
-                    {service.title}
-                  </h3>
+                  <div className="h-px flex-1 bg-white/10 group-hover:bg-[var(--color-primary)] transition-colors duration-500"></div>
                 </div>
+
+                {/* Title */}
+                <h3 className="text-3xl md:text-5xl font-black mb-6 leading-tight group-hover:text-[var(--color-primary)] transition-colors duration-300">
+                  {service.title}
+                </h3>
 
                 {/* Description */}
-                <div className="md:w-1/3">
-                  <p className="text-gray-400 text-lg leading-relaxed mb-6">
-                    {service.description}
-                  </p>
-                  <div className="flex items-center gap-2 text-[var(--color-primary)] font-bold text-sm tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-all transform translate-x-[-10px] group-hover:translate-x-0">
-                    Explore Strategy <span>→</span>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-          <div className="border-t border-white/10 w-full"></div>
-        </div>
+                <p className="text-gray-400 text-lg leading-relaxed mb-8">
+                  {service.description}
+                </p>
 
-        {/* Bottom CTA Section */}
-        <div className="mt-40 flex flex-col items-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            className="bg-[var(--color-primary)]/5 border border-[var(--color-primary)]/20 p-12 md:p-20 rounded-[3rem] text-center w-full max-w-4xl"
-          >
-            <h4 className="text-3xl md:text-5xl font-black mb-8 italic">
-              READY TO SCALE?
-            </h4>
-            <button
-              onClick={scrollToContact}
-              className="px-12 py-5 bg-[var(--color-primary)] hover:bg-white hover:text-black text-white rounded-full font-black text-lg transition-all shadow-[0_0_40px_rgba(0,102,255,0.4)]"
+                {/* Interactive Link */}
+                <div className="flex items-center gap-3 text-sm font-bold tracking-widest uppercase cursor-pointer text-white group-hover:text-[var(--color-primary)] transition-colors">
+                  <span className="border-b-2 border-transparent group-hover:border-[var(--color-primary)] pb-1 transition-all">
+                    Explore Strategy
+                  </span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5 transform group-hover:translate-x-2 transition-transform"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </div>
+              </motion.div>
+            ))}
+
+            {/* CTA Box at the end of the scroll */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="mt-10 p-10 bg-white/5 border border-white/10 rounded-3xl text-center"
             >
-              LET'S TALK BUSINESS
-            </button>
-          </motion.div>
+              <h4 className="text-2xl font-bold mb-6 italic">
+                Need something else?
+              </h4>
+              <button
+                onClick={scrollToContact}
+                className="px-8 py-4 bg-[var(--color-primary)] hover:bg-white hover:text-black text-white rounded-full font-bold transition-all"
+              >
+                VIEW FULL SERVICE MENU
+              </button>
+            </motion.div>
+          </div>
         </div>
       </div>
 
-      {/* Bottom Shape Divider (Fixed) */}
-      <div className="bg-gray-100">
-
-      <div className="absolute  bottom-0 left-0 w-full leading-[0] z-0">
+      {/* Bottom Shape Divider (Clean Transition to Next Section) */}
+      <div className="absolute bottom-0 left-0 w-full leading-[0] z-10">
         <svg
           viewBox="0 0 1000 100"
           preserveAspectRatio="none"
-          className="w-full h-[60px] md:h-[120px] fill-white"
+          className="w-full h-[60px] md:h-[120px] fill-white" // Use fill-gray-100 if next section is gray
         >
-          <path d="M0,100C300,0 700,0 1000,100H0Z" />
+          {/* A smooth curve up */}
+          <path d="M0,100 C300,0 700,0 1000,100 H0 Z" />
         </svg>
-      </div>
       </div>
     </section>
   );
