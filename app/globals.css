@@ -1,26 +1,143 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-primary: #0066FF;
+  --color-primary-dark: #0052CC;
+  --color-primary-light: #3399FF;
+  --color-black: #000000;
+  --color-white: #FFFFFF;
+  --color-gray: #2B2B2B;
+  --color-light-gray: #B4B4B4;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* REMOVED: Custom * reset (Tailwind's Preflight already does this)
+   REMOVED: Custom .container (Conflicts with Tailwind's built-in container)
+*/
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: auto;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Using system fonts but allowing Tailwind to override if needed */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", sans-serif;
+  background-color: var(--color-white);
+  color: var(--color-black);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f3f4f6eb;
+}
+
+/* Lenis Smooth Scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Section spacing - Use this for standard sections, but 
+   the Hero usually handles its own centering via flex-col */
+.section {
+  padding: 120px 0;
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 80px 0;
+  }
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Button styles - Cleaned up to allow Tailwind gap/flex overrides */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: 18px 45px;
+  border: none;
+  font-weight: 800;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+}
+
+/* Shape divider - Kept for layout, but ensure it doesn't add width */
+.shape-divider {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Form styles - Ensures they stay centered in parent flex boxes */
+input,
+textarea {
+  width: 100%;
+  display: block;
+  padding: 15px 20px;
+  border: 2px solid var(--color-light-gray);
+  background-color: var(--color-white);
+  font-family: inherit;
+}
+
+/* Video responsive */
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Performance optimizations */
+img,
+video {
+  will-change: transform;
+  max-width: 100%;
+  height: auto;
 }
